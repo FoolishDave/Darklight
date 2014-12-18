@@ -25,12 +25,13 @@ public class PlayerAbilityHandler
 	
 	public static void writeAbilityData(EntityPlayer player, PlayerAbilities abilities)
 	{
+		LogHelper.info("Trying to write ability data");
 		if (playerDataDirectory != null && playerDataDirectory.isDirectory())
 		{
 			NBTTagCompound playerAbilityCompound = null;
 			if (abilities == null)
 			{
-				new PlayerAbilities().writeToNBT(playerAbilityCompound);
+				playerAbilityCompound = readAbilityFile(player);
 			}
 			else
 			{
@@ -38,6 +39,7 @@ public class PlayerAbilityHandler
 			}
 			try
 			{
+				LogHelper.info("Trying to save player ability data");
 				File file1 = new File(playerDataDirectory, player.getUniqueID().toString() + ABILITY_EXTENSION + ".tmp");
 				File file2 = new File(playerDataDirectory, player.getUniqueID().toString() + ABILITY_EXTENSION);
 				CompressedStreamTools.writeCompressed(playerAbilityCompound, new FileOutputStream(file1));
