@@ -12,11 +12,20 @@ import com.ddogclaw.darklight.util.LogHelper;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 
 public class PlayerEventHandler 
 {
+	@SubscribeEvent
+	public void onEntityConstructing(EntityConstructing event)
+	{
+		if (event.entity instanceof EntityPlayer && DarklightPlayer.get((EntityPlayer) event.entity) == null)
+			DarklightPlayer.register((EntityPlayer) event.entity);
+	}
+	
 	@SubscribeEvent
 	public void onPlayerLoadFromFileEvent(PlayerEvent.LoadFromFile event)
 	{

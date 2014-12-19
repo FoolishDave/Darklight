@@ -13,15 +13,19 @@ public class AbilityEventHandler
 	{
 		if (event.entityPlayer != null)
 		{
-			PlayerAbilities abilities = PlayerAbilities.getPlayerInfo(event.entityPlayer);
+			DarklightPlayer abilities = DarklightPlayer.get(event.entityPlayer);
 			
 			if (abilities != null)
 			{
-				LogHelper.debug("Found player with ability trying to break block");
-				if (abilities.getDark() || abilities.getLight())
+				LogHelper.info("Found player with ability trying to break block");
+				if (abilities.isDark || abilities.isLight)
 				{
-					event.newSpeed = abilities.getBreakRate();
+					event.newSpeed = abilities.breakRate;
 				}
+			}
+			else
+			{
+				LogHelper.info("Player tried break, but has no abilities");
 			}
 		}
 	}

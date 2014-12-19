@@ -8,4 +8,5 @@ public class Reference
 	public static final String IDENTIFIER = "darklight_data";
 	public static final String CLIENT_PROXY_CLASS = "com.ddogclaw.darklight.proxy.ClientProxy";
 	public static final String SERVER_PROXY_CLASS = "com.ddogclaw.darklight.proxy.ServerProxy";
+	public final static String PROP_NAME = "DarklightPlayer";
 }
